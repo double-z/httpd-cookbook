@@ -1,0 +1,31 @@
+
+#===================================
+# MOD_SETENVIF SETTINGS
+#
+# Generic ENV settings relative to all vhosts:
+#
+#  These Settings Handle Misbehaving Browsers whom
+#  respond screwy to SSL or Keepalives or whatever
+#
+#===================================
+
+# Load the SetEnvIf Module
+
+#LoadModule setenvif_module modules/mod_setenvif.so
+
+# Define It's Settings
+<IfModule mod_setenvif.c>
+BrowserMatch "Mozilla/2" nokeepalive
+BrowserMatch "MSIE 4\.0b2;" nokeepalive downgrade-1.0 force-response-1.0
+BrowserMatch "RealPlayer 4\.0" force-response-1.0
+BrowserMatch "Java/1\.0" force-response-1.0
+BrowserMatch "JDK/1\.0" force-response-1.0
+
+BrowserMatch "Microsoft Data Access Internet Publishing Provider" redirect-carefully
+BrowserMatch "MS FrontPage" redirect-carefully
+BrowserMatch "^WebDrive" redirect-carefully
+BrowserMatch "^WebDAVFS/1.[0123]" redirect-carefully
+BrowserMatch "^gnome-vfs/1.0" redirect-carefully
+BrowserMatch "^XML Spy" redirect-carefully
+BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
+</IfModule>

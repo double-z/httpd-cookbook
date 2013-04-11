@@ -1,0 +1,11 @@
+@@@html
+<pre>
+Platform: <%= node['platform'] %>
+Platform Version: <%= node['platform_version'] %>
+Default IP Address: <%= node['ipaddress'] %>
+Fully Qualified Domain Name: <%= node['fqdn'] %>
+Memory Total: <%= node['memory']['total'].to_i / 1000 %>MB
+CPU Count: <%= node['cpu']['total'] %>
+Chef Version: <%= node['chef_packages']['chef']['version'] %>
+Node's Run List: <%= node.run_list.to_s %>
+</pre>

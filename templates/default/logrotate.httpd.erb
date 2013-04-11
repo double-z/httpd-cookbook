@@ -1,0 +1,26 @@
+#
+# This Configuration and it's parent Package are:
+#           *Managed by Chef*
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# DO NOT EDIT. CHANGES WILL BE OVERWRITTEN.
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# +++++++++++++++++++++++++++++++++++
+# ALL CHANGES SHOULD BE MADE IN
+# IN THE CHEF_REPO REPOSITORY, COMMITTED,
+# THEN APPLIED BY RUNNING CHEF CLIENT
+# ++++++++++++++++++++++++++++++++++++
+
+<%= node[:httpd][:log_dir] %>/*.log {
+    daily
+    rotate 30
+    compress
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+        /sbin/service httpd reload > /dev/null 2>/dev/null || true
+    endscript
+}
+

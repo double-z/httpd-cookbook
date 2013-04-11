@@ -1,0 +1,69 @@
+NameVirtualHost *:<%= @port %>
+
+<VirtualHost *:<%= @port %>>
+
+  ServerName <%= @servername %>
+    <% if @serveralias.respond_to?(:each) -%>
+<% unless @serveralias.nil? || @serveralias.empty? %>
+  ServerAlias <% @serveralias.each do |a| %><%= a %> <% end %>
+<% end -%>
+<% end -%>
+  DocumentRoot  <%= @doc_root %>
+
+<% unless @use_canonical_name.nil? || @use_canonical_name.empty? %>
+  # get the server name from the Host: header
+  UseCanonicalName <%= @use_canonical_name %>
+<% end -%>
+<% unless @keepalive.nil? || @keepalive.empty? %>
+  # get the server name from the Host: header
+  KeepAlive <%= @keepalive %>
+<% end -%>
+<% unless @default_type.nil? || @default_type.empty? %>
+  # get the server name from the Host: header
+  DefaultType <%= @default_type %>
+<% end -%>
+<% unless @enable_mmap.nil? || @enable_mmap.empty? %>
+  # get the server name from the Host: header
+  EnableMMAP <%= @enable_mmap %>
+<% end -%>
+<% unless @enable_sendfile.nil? || @enable_sendfile.empty? %>
+  # get the server name from the Host: header
+  EnableSendfile <%= @enable_sendfile %>
+<% end -%>
+<% unless @log_level.nil? || @log_level.empty? %>
+  # get the server name from the Host: header
+  LogLevel <%= @log_level %>
+<% end -%>
+<% unless @directoryindex.nil? || @directoryindex.empty? %>
+  # Define the default file served
+  DirectoryIndex <%= @directoryindex %>
+<% end -%>
+  ErrorLog          <%= node[:httpd][:base][:log_dir] %>/<%= @servername %>-error.log
+  CustomLog         <%= node[:httpd][:base][:log_dir] %>/<%= @servername %>-access.log <%= @log_type %>
+
+  # http://www.opennet.ru/opennews/art.shtml?num=31582
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_METHOD} ^(HEAD|GET) [NC]
+  RewriteCond %{HTTP:Range} ([0-9]*-[0-9]*)(\s*,\s*[0-9]*-[0-9]*)+
+  RewriteRule .* - [F]
+  <% unless @rewrite_log_level.nil? || @rewrite_log_level.empty? %>
+  RewriteLog         <%= node[:httpd][:base][:log_dir] %>/<%= @servername %>-rewrite.log
+  RewriteLogLevel <%= @rewrite_log_level %>
+<% end -%>
+</IfModule>
+
+  <Location <%= @deploy_root %> >
+    order allow,deny
+    allow from all
+  </Location>
+
+  <Directory <%= @doc_root %>>
+    Options FollowSymlinks
+    order allow,deny
+    allow from all
+  </Directory>
+
+</VirtualHost>
+
+

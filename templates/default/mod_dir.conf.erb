@@ -1,0 +1,10 @@
+#
+# Used for the DirectoryIndex setting. uses minimal resources,
+# and is just good to load by default
+#
+#LoadModule dir_module modules/mod_dir.so
+
+<% unless @directoryindex.nil? || @directoryindex.empty? %>
+# Define the default file served
+DirectoryIndex <%= @directoryindex %>
+<% end -%>

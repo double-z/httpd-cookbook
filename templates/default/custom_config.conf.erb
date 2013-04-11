@@ -1,0 +1,21 @@
+# Configured by Chef for <%= node['fqdn'] %>, all local changes will be overwritten
+
+<% @options.each do |name, location| -%>
+# <%= name %>
+
+<% location.each do |option,value| -%>
+  <% if value.kind_of?(Hash) -%>
+
+  # <%= option %>
+  <% value.each do |k,v| -%>
+  <%= k %> <%= v %>
+  <% end -%>
+  <% else -%>
+
+<%= option %> <%= value %>
+  <% end -%>
+<% end -%>
+
+
+
+  <% end -%>

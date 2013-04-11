@@ -1,0 +1,47 @@
+#
+# This Configuration and it's parent Package are:
+#           *Managed by Chef*
+
+# This file was generated for host:
+#
+#    <%= node[:hostname] %>
+#
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# DO NOT EDIT. CHANGES WILL BE OVERWRITTEN.
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# +++++++++++++++++++++++++++++++++++
+# ALL CHANGES SHOULD BE MADE IN
+# IN THE CHEF_REPO REPOSITORY, COMMITTED,
+# THEN APPLIED BY RUNNING CHEF CLIENT
+# ++++++++++++++++++++++++++++++++++++
+
+
+#
+# PHP is an HTML-embedded scripting language which attempts to make it
+# easy for developers to write dynamically generated webpages.
+
+# Load The PHP Module
+
+LoadModule php5_module modules/libphp5.so
+
+#
+# Cause the PHP interpreter to handle files with a .php, .htm, .html and .js extension.
+#
+
+AddHandler php5-script .php
+AddType text/html .php
+AddType application/x-httpd-php .htm .html .php .php3 .js
+
+#
+# Uncomment the following line to allow PHP to pretty-print .phps
+# files as PHP source code:
+#
+
+AddType application/x-httpd-php-source .phps
+
+# Add index.php to the list of files that will be served as directory
+# indexes.
+#
+DirectoryIndex  index.php index.php3 index.html index.htm
