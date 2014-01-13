@@ -1,4 +1,4 @@
 site :opscode
 
 metadata
-cookbook "php53", path: "/workspace/cookbooks/php53"
+#cookbook "php53", path: "/workspace/cookbooks/php53"
