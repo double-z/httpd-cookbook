@@ -1,6 +1,7 @@
 # httpd cookbook
 test
 test2
+test3
 actions
 alias
 asis
