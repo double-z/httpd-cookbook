@@ -5,4 +5,5 @@ license          "All rights reserved"
 description      "Installs/Configures httpd"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.1.5"
-depends "php53"
+depends "apt"
+depends "cc-test"
