@@ -1,4 +1,6 @@
-site :opscode
+source "https://api.berkshelf.com"
 
 metadata
-#cookbook "php53", path: "/workspace/cookbooks/php53"
+
+cookbook "cc-test", github: "cc-sysops/cc-test-cookbook"
+cookbook "apt"
